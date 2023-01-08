@@ -4,10 +4,22 @@ print('Guess the animal!')
 
 def checkAnswer(guess, answer):
     global score
-    if guess == answer:
-        print('Correct!')
-    else:
-        print('Nope! Guess Again')
+    still_guessing = True
+    attempt = 0
+    while still_guessing and attempt < 3:
+        if guess.lower() == answer.lower():
+            print('Correct!')
+            score = score+1
+            still_guessing = False
+        else:
+            if attempt < 2:
+                guess = input('Nope! Guess Again ')
+            attempt = attempt+1
+    if attempt == 3:
+        print('The correct answer is '+answer)
+
+
+score = 0
 
 
 guess1 = input('What animal is known as the king of the jungle?')
@@ -22,3 +34,4 @@ guess5 = input('What animal goes MEEP MEEP?')
 checkAnswer(guess5, ' roadrunner')
 guess6 = input('What animal has layers like onions?')
 checkAnswer(guess6, ' ogre')
+print('Your score is'+' '+str(score))
